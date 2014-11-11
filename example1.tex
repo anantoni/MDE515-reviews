@@ -14,59 +14,105 @@
 
 %\chapter{First Chapter}
 
-\section{Introduction}
 
-This paper presents Zipf's Law, a law proposed by G.K. Zipf to model
-the regularity behind some naturally occuring phenomena. This is, in
-essence, an algebraically decaying function describing the probability
-distribution.
+\begin{abstract}
+
+Whenever phenomena with apparent irregularity are observed over large
+samples of data, it is important to detect the statistical properties
+of the system which cause such regularities. This paper presents
+Zipf's Law, a law proposed by G.K. Zipf to model the regularity behind 
+some naturally occurring phenomena. This is, in essence, an
+algebraically decaying function describing the probability distribution.
+\end{abstract}
 
 % \begin{equation}
 %     \label{simple_equation}
-%     \alpha = \sqrt{ \beta }
+n%     \alpha = \sqrt{ \beta }
 % \end{equation}
 
+\section{Introduction}
 
+Zipf's Law is a law first formulated by G. K. Zipf using mathematical
+statistics and concentrates on various formulations of the law and
+describes a few attempts at statistically explaining its theoretical
+underpinnings. Zipf's Law models an empirical phenomenon which has been 
+observed in data studied in several physical and social sciences and
+the author attempts to consolidate various cases in which Zipf's law
+has been empirically shown to hold and concludes with the
+investigation of real data distributions, as an independent
+verification of the law.
 
-\subsection{Subsection Heading Here}
+\section{Formulation f Zipf's Law}
+\subsection{Simple form}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+The simple form of Zipf's suggests that rxr = constant where r is the
+ rank of xr is the size of the rth data value in an ordered set. This
+ rank-size relation is known as Zipf's Law and its graph is a
+ rectangular hyperbola.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Generalized form}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+A main drawback of the Zipf's Law is that the phenomena observed by
+Zipf and justified by statistical rationale lead to a family of
+distributions described by the zeta function.
 
+\section{Theoretical foundation of Zipf's Law}
+\subsection{Cumulative Advantage Distribution}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=3.0in]{myfigure}
-    \caption{Simulation Results}
-    \label{simulationfigure}
-\end{figure}
+Price presented the cumulative advantage distribution, which can be
+derived as a stochastic birth process.
 
+\subsection{Mandelbrot's derivation}
+
+By assuming that the aim of language is to transmit the most
+information per symbol with the least effort Mandelbrot obrained the
+following relationship:
+
+f(r) = K(r+c)^-θ
+
+where f(r) is the word frequency and r is the rank of the word. The
+constant c improves the fit for small r and the exponent improves the
+fir for large r.
+
+\subsection{Simon's approach}
+
+Simon expanded on Zipf's work by describing a set of empirically
+derived skew distribution functions.
+
+\subsection{Rationale behind Zipf's law}
+
+The empowerment of Zipf's law assumes some properties about the
+system being studied. In the case of a system limited to the usage
+frequency of words in literature, Simon observed that the stochastic
+process by which words are chosen to be included in written text
+follows two steps:
+
+* By process of association, i.e., sampling earlier segments of
+his/her word sequences.
+* By imitation, i.e., sampling from other works by self or other authors.
+
+The assumptions made in Simon's formula are:
+1. The probability that the (T + 1)st word has appeared exactly r
+times is proportional to the total number of occurrences of all words
+that have appeared r times.
+
+2. For large T, there is a constant probability ω that the (T + 1)st
+word has not appeared in the first T words. 
+
+The process of association produces words which can only be the
+results of the first assumption, while the process of imitation can
+also produce words which are the results of assumption 2.
+
+\section{Verification of Zipf's law on real distributions}
+
+The author attempted to verify Zipf's law using real life data, in
+particular using a database of statistics of some NBA players for the
+years 1991-92. Many of the statistics demonstrated roughly hyperbolic
+graphs, which lead to the claim that Zipf's law was empirically
+verified for this particular real life database.
 
 \section{Conclusion}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
 
 
 \end{document}
