@@ -1,0 +1,101 @@
+\documentclass{article} \usepackage{hyperref} \usepackage{graphicx}
+
+\begin{document}
+
+\title{Paper Review - Constructing Call Graphs of Scala Programs}
+\author{Anastasios Antoniadis}
+
+\maketitle
+
+\section{Introduction}
+
+This paper revises existing call graph construction algorithms ---
+Name-Based Resolution and Rapid Type Analysis --- to Scala features
+such as traits and abstract type members in order to demonstrate that
+careful handling of Scala characteristics greatly improves call graph
+precision.
+
+Moreover, the paper explains that the source-based algorithms
+developed by the authors are much more precise than bytecode-based
+algorithms as a result of the significant amount of type information
+lost due to the transformations and optimizations performed by the
+Scala compiler and the generation of code which uses reflection which
+is hard to analyse.
+
+Traits are a cornerstone feature of Scala aiming to distribute the
+functionality of an object over multiple reusable components. Method
+call behavior in Scala is based on the linearization of a class. The
+presence of traits complicates the construction of call graphs since
+method calls that occur in a trait typically cannot be resolved by
+consulting the class hierarchy alone. In order to achieve a precise
+and efficient solution it is necessary to determine the set of
+combinations of traits that actually occur in a program.
+
+Furthermore, regarding abstract type members it is necessary to
+understand how abstract type members are bound to concrete types as a
+result of trait composition in order to resolve method calls. The
+approach followed by the authors considers how abstract type members
+are bound to concrete types in observed combinations of traits.
+
+Closures constitute another Scala feature which allows function to be
+bound to variables and passed as arguments to other functions. In this
+case the analysis in not performed at source-level it is instead
+performed after the Scala compiler has desugared the code.
+
+Calls on the this reference are common in both Java and Scala. In some
+cases it is possible to resolve such class more precisely by
+exploiting the knowledge that the caller and the callee must be
+members of the same object. Special care is taken in the case of super
+calls where the signatures of methods which are targets of all
+reachable super calls are blacklisted.
+
+Experimental evaluation on a collection of Scala programs showed that
+bytecode-analysis is much more imprecise compared to source-code
+analysis. Name-based analysis lead to a very significant precision
+loss compared to subtype-based analysis. In the case of call sites on
+receivers with abstract types the algorithm based on the set of
+concrete types that may be bound to abstract type members is more
+precise compared to the bound-based algorithm. The special handling of
+this calls did not lead to significant precision improvement. The
+running time of the analyses improves as the precision increases due
+to the lower amount of call graph edges generated. The algorithms
+focused on abstract type members and special handling of this calls
+have similar execution times to the one handling traits since such
+calls are a relatively small fraction of all call sites in the
+benchmark programs. Finally, a comparison between the name-based
+resolution algorithm and the most precise algorithm which handles all
+the previously mentioned Scala features shows that a very significant
+amount of the calls which are identified as polymorphic by the
+name-based analysis are resolved to monomorphic in the latter case.
+
+\section{Paper Evaluation}
+\subsection{Strengths}
+\begin{itemize}
+\item This is the first piece work done on call graph construction in
+  Scala. It serves as a good starting point mainly because it  explains
+  some cornerstone Scala features and adapts some basic call graph
+  construction algorithms to these features, despite the fact that
+  there is no real innovation in the paper. At the same time the
+  authors identify the limitations of bytecode-bases call graph
+  construction algorithms and their origins.
+\item The algorithms were evaluated using a reasonably wide variety of
+  Scala programs with different characteristics. Moreover, the
+  evaluation did not solely focus on precision, the authors also
+  evaluated the running time of each algorithm and at the same time
+  identified the weaknesses of the algorithms developed such as the
+  inefficacy of this handling in many cases and the reason behind it.
+\end{itemize}
+
+\subsection{Weaknesses}
+\begin{itemize}
+\item My understanding is that the algorithms evaluated in this paper
+  do not rely on points-to information. However, call graph creation
+  and points-to analysis are mutually recursive problems. Considering
+  that the main measurement in the evaluation section is the precision
+  of algorithms I would expect the implementation and evaluation of
+  algorithms which rely on points-to information and some observations
+  on how Scala features affect the precision of such algorithms.
+\end{itemize}
+
+
+\end{document}

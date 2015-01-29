@@ -1,0 +1,85 @@
+\documentclass{article} \usepackage{hyperref} \usepackage{graphicx}
+
+\begin{document}
+
+\title{Paper Review - Late Data Layout: Unifying Data Representation Transformations} \author{Anastasios Antoniadis}
+
+\maketitle
+
+\section{Introduction}
+
+This paper proposes a method of Unification of Data Representation
+Transformations called Late Data Layout. In particular the authors
+focus on the unboxing of primitive types and Scala-specific features
+such as specialization, value classes which are motivated by erased
+generics and multi-stage programming. For instance, Scala abstracts
+over the boxed and unboxed representations of integers by exposing a
+single Scala.Int type. As a result the compiler has to choose the
+representation of each value and introduce coercions such as boxing
+and unboxing.
+
+Similar transformations are required for:
+\begin{itemize}
+\item value classes: inline C-like structures vs boxed objects
+\item specialization with the use of miniboxing: long integer encoding vs
+boxed values.
+\item staging: direct value vs lifted expression
+\end{itemize}
+The problem is that syntax-driven transformations introduce redundant
+coercions which slow down execution. The introduction of peephole
+optimizations can eliminate the redundant coercions in simple
+scenarios, however such optimizations do not scale well to more
+complex cases.
+
+Late Data Layout is an approach which aims to resolve this
+problem. The Late Data Layout mechanism favors type-driven
+transformations over syntax-based rules, by injecting representation
+information in the types and then inserts coercions wherever there is
+a type mismatch.
+
+The mechanism consists of three phases:
+\begin{enumerate}
+\item Inject Phase - Injects annotations that track the
+representations.
+\item Coerce Phase - Coerce only when representations do not
+match. This is accomplished by propagating expected type using local
+type inference which allows tracking of the require representation of
+each expression.
+\item Commit Phase - Commit to the final representation, by replacing
+annotated types with their target representations.
+\end{enumerate}
+
+Late Data Layout provides consistency---guaranteed by the type system,
+selectivity---thanks to individual value annotated, optimality---by of
+expected type propagation.
+
+The experimental results show that this approach leads to good
+speedups in the cases evaluated in this paper.
+
+\section{Paper Evaluation}
+\subsection{Strengths}
+\begin{itemize}
+\item I like the generality of this approach since it handles several
+cases of different data representations while the development effort
+required for the development of the compiler plugins is reasonable.
+
+\item In the case of specialization I like the fact that the Late Data
+Layout mechanism was added to the existing and already evaluated
+miniboxing mechanism, which also shows that it can handle multiple
+representations.
+\end{itemize}
+
+\subsection{Weaknesses}
+\begin{itemize}
+\item I would expect a more thorough experimental evaluation of the
+Late Data Layout mechanism. In particular, I would like to see a
+demonstration of its efficiency in a wider set of benchmark programs
+instead of just one Fast Fourier Transformation example in the case of
+value classes and staging. Especially since the claims regarding the
+optimality of the mechanism are not followed by a formal proof I think
+it is mandatory to back up those claims by presenting speedups in a
+variety of programs using value classes and staging.
+\end{itemize}
+
+
+\end{document}
