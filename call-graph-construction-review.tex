@@ -37,9 +37,9 @@ result of trait composition in order to resolve method calls. The
 approach followed by the authors considers how abstract type members
 are bound to concrete types in observed combinations of traits.
 
-Closures constitute another Scala feature which allows function to be
+Closures constitute another Scala feature which allows functions to be
 bound to variables and passed as arguments to other functions. In this
-case the analysis in not performed at source-level it is instead
+case the analysis in not performed at source-level, it is instead
 performed after the Scala compiler has desugared the code.
 
 Calls on the this reference are common in both Java and Scala. In some
@@ -72,30 +72,29 @@ name-based analysis are resolved to monomorphic in the latter case.
 \subsection{Strengths}
 \begin{itemize}
 \item This is the first piece work done on call graph construction in
-  Scala. It serves as a good starting point mainly because it  explains
-  some cornerstone Scala features and adapts some basic call graph
-  construction algorithms to these features, despite the fact that
-  there is no real innovation in the paper. At the same time the
-  authors identify the limitations of bytecode-bases call graph
-  construction algorithms and their origins.
+Scala. It serves as a good starting point mainly because it explains
+the behaviour of some cornerstone Scala features and adapts basic call
+graph construction algorithms to these features, despite the fact that
+there is no real innovation in the paper. At the same time the authors
+identify the limitations of bytecode-bases call graph construction
+algorithms and their origins.
 \item The algorithms were evaluated using a reasonably wide variety of
-  Scala programs with different characteristics. Moreover, the
-  evaluation did not solely focus on precision, the authors also
-  evaluated the running time of each algorithm and at the same time
-  identified the weaknesses of the algorithms developed such as the
-  inefficacy of this handling in many cases and the reason behind it.
+Scala programs with different characteristics. Moreover, the
+evaluation did not solely focus on precision, the authors also
+evaluated the running time of each algorithm and at the same time
+identified the weaknesses of the algorithms developed such as the
+inefficacy of this handling in many cases and the reason behind why
+such inefficacy is observed.
 \end{itemize}
 
 \subsection{Weaknesses}
 \begin{itemize}
 \item My understanding is that the algorithms evaluated in this paper
-  do not rely on points-to information. However, call graph creation
-  and points-to analysis are mutually recursive problems. Considering
-  that the main measurement in the evaluation section is the precision
-  of algorithms I would expect the implementation and evaluation of
-  algorithms which rely on points-to information and some observations
-  on how Scala features affect the precision of such algorithms.
+do not rely on points-to information. However, call graph creation and
+points-to analysis are mutually recursive problems. Considering that
+the main measurement in the evaluation section is the precision of
+algorithms I would expect the implementation and evaluation of
+algorithms which rely on points-to information and some observations
+on how Scala features affect the precision of such algorithms.
 \end{itemize}
-
-
 \end{document}

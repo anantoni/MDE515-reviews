@@ -8,8 +8,8 @@
 
 \section{Introduction}
 
-This paper proposes a method of Unification of Data Representation
-Transformations called Late Data Layout. In particular the authors
+This paper proposes a method of unification of data representation
+transformations called Late Data Layout. In particular the authors
 focus on the unboxing of primitive types and Scala-specific features
 such as specialization, value classes which are motivated by erased
 generics and multi-stage programming. For instance, Scala abstracts
@@ -43,7 +43,7 @@ The mechanism consists of three phases:
 representations.
 \item Coerce Phase - Coerce only when representations do not
 match. This is accomplished by propagating expected type using local
-type inference which allows tracking of the require representation of
+type inference which allows tracking of the required representation of
 each expression.
 \item Commit Phase - Commit to the final representation, by replacing
 annotated types with their target representations.
@@ -62,11 +62,13 @@ speedups in the cases evaluated in this paper.
 \item I like the generality of this approach since it handles several
 cases of different data representations while the development effort
 required for the development of the compiler plugins is reasonable.
-
 \item In the case of specialization I like the fact that the Late Data
 Layout mechanism was added to the existing and already evaluated
 miniboxing mechanism, which also shows that it can handle multiple
 representations.
+\item The authors provided a detailed explanation of how the Late Data
+  Layout mechanism behaves and how its three phases work in each of
+  the presented case studies.
 \end{itemize}
 
 \subsection{Weaknesses}
@@ -77,8 +79,8 @@ demonstration of its efficiency in a wider set of benchmark programs
 instead of just one Fast Fourier Transformation example in the case of
 value classes and staging. Especially since the claims regarding the
 optimality of the mechanism are not followed by a formal proof I think
-it is mandatory to back up those claims by presenting speedups in a
-variety of programs using value classes and staging.
+it is mandatory to back those claims up by presenting speedups in a
+variety of programs using value classes and staging. 
 \end{itemize}
 
 
